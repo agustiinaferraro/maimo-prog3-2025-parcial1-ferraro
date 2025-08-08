@@ -1,4 +1,4 @@
-// File: /Users/leanamaro/Documents/Profesor/Maimonides/Prog 3/prog3-2024/Examen half/Half Examn resuelto/maimo-prog3-2024-half-exam/src/app/layout.js
+// File: D:\Documents\umai\cuarto-ano\segundo-cuatri\programacion\parcial1\maimo-prog3-2025-half-exam-movies-blank\src\app\layout.js
 import * as entry from '../../../src/app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

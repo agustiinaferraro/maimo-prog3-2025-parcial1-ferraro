@@ -8,15 +8,24 @@ import Link from 'next/link';
 export default function MovieDetail({ id }) {
   const [movieDetail, setMovieDetail] = useState({});
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const API_URL = ``;
+  /*const API_URL = `https://api.themoviedb.org/3/movie/[ID_MOVIE]?api_key=eb7e3fd7272143562cec959061b5eb32`;*/
 
   useEffect(() => {
     const fetchMovieDetail = async () => {
-      // 1B. Completar esta función
-      
+      setLoading(true);
+      try {
+        const response = await axios.get (`https://api.themoviedb.org/3/movie/${id}?api_key=eb7e3fd7272143562cec959061b5eb32`);
+        setMovieDetail(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.log("Hubo un error", error);
+        setError("Error al cargar las peliculas");
+        setLoading(false);
+      }  
     };
-   
+  fetchMovieDetail();
   }, [id]);
   return (
     <>
@@ -24,21 +33,26 @@ export default function MovieDetail({ id }) {
       {!loading && (
         <div className='grid'>
           <div className='col_6  flex justify-center p-10'>
-            <div className='relative w-[500px] h-[500px]'>
+            <div className='relative w-[500px] h-[500px] text-white'>
               <Image
-                src={`https://image.tmdb.org/t/p/original/`}
+                src={`https://image.tmdb.org/t/p/original/${movieDetail.poster_path}`}
                 fill={true}
-                alt={''}
+                alt={movieDetail.title}
               />
             </div>
           </div>
           <div className='col_6 flex flex-col justify-center p-10'>
-            <h1 className='text-2xl font-bold mb-8'>Title</h1>
-            <p className='mb-10'>Overview</p>
+            <h1 className='text-2xl font-bold mb-8'>{movieDetail.title}</h1>
+            <p className='mb-10'>{movieDetail.overview}</p>
             {/* 3 Listado de generos */}
-            <ul className='generos mb-10'>
-             
-            </ul>
+
+            <div>
+            {movieDetail.genres && (
+              <ul className="generos mb-10">   
+                {movieDetail.genres.map((genre)=>( 
+                <li key={genre.id}>{genre.name}</li>))}
+              </ul>)}  
+            </div>  
 
             <div className='flex gap-5'>
               <Link

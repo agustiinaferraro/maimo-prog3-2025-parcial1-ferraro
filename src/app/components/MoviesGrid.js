@@ -4,8 +4,9 @@ export default function MoviesGrid({ movies, loading }) {
   return (
     <div className='grid'>
       {
-        //2. Borrar este comentario y completar el código para mostrar las películas
-        
+        movies.map((movie)=>(
+          <Card movie={movie} loading={loading}/>
+        ))        
       }
     </div>
   );

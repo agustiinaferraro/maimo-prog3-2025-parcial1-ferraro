@@ -4,8 +4,8 @@ import Logo from '@/app/components/Logo';
 
 export default function Navbar() {
   return (
-    <div className='flex justify-between items-center py-8 px-10 h-12 bg-orange-500'>
-      <div className='logo'>
+    <div className='flex justify-between items-center py-8 px-10 h-12 '>
+      <div className='logo my-20'>
         <h1><Logo /></h1>
       </div>
       <nav>
@@ -14,7 +14,7 @@ export default function Navbar() {
             <Link href='/'>Home</Link>
           </li>
           <li>
-            About
+            <Link href='/about'>About</Link>
           </li>
         </ul>
       </nav>
